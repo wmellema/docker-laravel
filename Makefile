@@ -6,7 +6,8 @@ all:
 	cd laravel; \
 	git submodule add https://github.com/Laradock/laradock.git; \
 	cd laradock; \
-	cp env-example .env; \
+	sed 's/INSTALL_XDEBUG=false/INSTALL_XDEBUG=true/g' env-example > .env; \
+	pwd; \
 	docker-compose up -d nginx mysql;
 
 	cd laravel/laradock; docker-compose exec workspace composer install
