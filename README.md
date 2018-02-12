@@ -1,6 +1,6 @@
 # docker-laravel
 
-##To run:
+## To run:
 1. Install docker and docker-compose
 2. Run the following command:
 
