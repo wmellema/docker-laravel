@@ -22,7 +22,13 @@ This workspace is used to run the `artisan` command for example
 
 You will now have a terminal session inside your workspace.
 
-For now: Every file created by artisan will be owned by root, so you'll have to do a chown of those files. For your benefit, there is a script that does that automatically. You can execute it by running `sudo ./own.sh` from the root of this project
+**You don't have to change any of the .env variables in your laravel installation!**
+Your settings are already set with the create_stack script.
+
+There is one exeption:
+ * If the variable `DB_HOST` in the `laravel/.env` file is still `127.0.0.1`, you'll have to change it manually to the correct one. It can be found inside the portainer management interface. If that is not installed: Install it with `./create_stack.sh portainer-only`
+
+**Note**: Every file created by artisan will be owned by root, so you'll have to do a chown of those files. For your benefit, there is a script that does that automatically. You can execute it by running `sudo ./own.sh` from the root of this project
 
 
 For more information: Check out the laradock documentation at [laradock](http://laradock.io/guides/#Digital-Ocean)

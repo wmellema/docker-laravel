@@ -1,7 +1,7 @@
 #!/bin/bash
 root=$(pwd);
 
-
+system=$(./version.sh)
 case $1 in
   portainer)
     echo Creating Portainer
@@ -26,9 +26,7 @@ cd "laravel";
 wait;
 sed 's/DB_DATABASE=homestead/DB_DATABASE=default/g' .env.example > .envtmp1;
 wait;
-sed 's/DB_USERNAME=homestead/DB_USERNAME=default/g' .envtmp1 > .env;
-wait;
-rm -f .envtmp*;
+sed 's/DB_USERNAME=homestead/DB_USERNAME=default/g' .envtmp1 > .envtmp2;
 wait;
 git clone https://github.com/Laradock/laradock.git;
 wait;
@@ -42,10 +40,18 @@ pwd;
 wait;
 docker-compose up -d nginx mysql;
 wait;
-mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+if [ $system = "Darwin" ];
+ then
+  mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet /{print substr($2,0,length($2)-3)}')
+else
+  mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet addr/{print substr($2,6)}')
+fi
 wait
-sed -i 's/DB_HOST=127.0.0.1/DB_HOST='$mysql_host'/g' "$root/laravel/.env"
+cd "$root/laravel"
+cat .envtmp2 | sed 's/DB_HOST=127.0.0.1/DB_HOST='$mysql_host'/g' > .env
 wait
+rm -f .envtmp*;
+wait;
 cd "$root/laravel/laradock";
 wait
 docker-compose exec workspace composer install
