@@ -1,9 +1,9 @@
 # docker-laravel
 
 ## To run:
-* Install docker and docker-compose
 * **MAKE SURE YOU DON'T HAVE ANYTHING RUNNING ON PORTS 80, 443 AND 3306 (AKA Http Https and Mysql)**
-  * For linux: Run the following command: `sudo ./configure.sh` and reboot
+  * For Fedora: Run the following command: `sudo ./configure.sh` and reboot
+  * For other systems: Install docker-ce and docker-compose
 * Run the following command: `./create_stack.sh portainer`
 
 Now you have a full installation of laravel with Portainer as a Docker frontend.
