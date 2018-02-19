@@ -1,6 +1,19 @@
 #!/bin/bash
 root=$(pwd);
 
+
+case $1 in
+  portainer)
+    echo Creating Portainer
+    docker volume create portainer_data
+    docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+    ;;
+  *)
+    echo Not installing Portainer
+    ;;
+esac
+
+
 git clone https://github.com/laravel/laravel;
 wait;
 cd "laravel";
