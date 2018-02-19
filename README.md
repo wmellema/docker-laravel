@@ -2,6 +2,7 @@
 
 ## To run:
 * Install docker and docker-compose
+* **MAKE SURE YOU DON'T HAVE ANYTHING RUNNING ON PORTS 80, 443 AND 3306 (AKA Http Https and Mysql)**
   * For linux: Run the following command: `sudo ./configure.sh` and reboot
 * Run the following command: `./create_stack.sh portainer`
 
