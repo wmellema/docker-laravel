@@ -3,6 +3,7 @@
 ## To run:
 * **MAKE SURE YOU DON'T HAVE ANYTHING RUNNING ON PORTS 80, 443 AND 3306 (AKA Http Https and Mysql)**
   * For Fedora: Run the following command: `sudo ./configure.sh` and reboot
+  * For Mac OSX: follow the installation instructions on the [docker website](https://store.docker.com/editions/community/docker-ce-desktop-mac)
   * For other systems: Install docker-ce and docker-compose
 * Run the following command: `./create_stack.sh portainer`
 
@@ -11,6 +12,8 @@ Now you have a full installation of laravel with Portainer as a Docker frontend.
 To install without portainer: run the above command without the portainer appended
 
 You can reach the management interface at: `localhost:9000` and the Laravel project at `http://localhost`
+
+If for some reason your laravel installation is not running, you can just run the `./create_stack.sh` again in order to start all docker images
 
 ## Using the installation
 
