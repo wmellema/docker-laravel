@@ -36,15 +36,27 @@ After you've cloned the repository, you need to run the following command:
 ```
 This will create a laravel installation within a couple of docker containers. All the code for this will reside within the `laravel` folder.
 
+If you want to add a custom repository, you can use the following command instead of the regular `./create_stack.sh` command:
+```
+./create_stack -r <REPO_URL>
+```
+**OR**
+```
+./create_stack --repo <REPO_URL>
+```
+
 After running this command, you'll be able to reach your laravel installation at [http://localhost/](http://localhost/)
 
 **After the installation it is not neccesary for the user to change their .env file**
 
 #### Portainer
 
-Pre-bundled with this software is the posibility to use the [portainer](https://portainer.io/) docker image to manage your docker stack. This can be installed as follows:
+Pre-bundled with this software is the posibility to use the [portainer](https://portainer.io/) docker image to manage your docker stack. This can be installed in 2 ways:
 ```
-./create_stack portainer-only
+./create_stack.sh -P
+```
+```
+./create_stack.sh --only-portainer  
 ```
 Portainer can now be reached at [http://localhost:9000/](http://localhost:9000)
 
@@ -57,6 +69,10 @@ To test if your installation is fully working: Use the following commands in spe
 cd laravel/laradock
 docker-compose exec workspace bash
 artisan migrate:fresh
+```
+**OR AS OF v1.1.0**
+```
+./artisan.sh migrate:fresh
 ```
 If this gives any errors, please check your configuration or your installation. It could be that your containers refused to start due to already assigned ports
 
@@ -124,6 +140,7 @@ Within the MySQL prompt you would use `use default;` to select the correct datab
 * [Portainer](https://portainer.io/) - Docker management interface
 * [Laravel](https://github.com/laravel/laravel) - Web framework
 * [Laradock](https://github.com/laradock/laradock) - Docker-compose library for laravel
+* [ArgBash](https://argbash.io/) - Tool for generating bash arguments
 
 ## Contributing
 

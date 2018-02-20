@@ -11,7 +11,7 @@ addons:
       - docker-ce
 
 before_install:
-  - ./create_stack.sh
+  - ./create_stack.sh -r https://github.com/laravel/laravel
 
 script:
   - ./artisan.sh migrate:fresh
