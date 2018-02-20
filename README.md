@@ -83,6 +83,28 @@ When and if you encounter files that cause permission issues with your host syst
 sudo ./own.sh
 ```
 
+### MySQL
+
+The easiest way to interact with the database is [dbeaver](https://dbeaver.jkiss.org/).
+
+The credentials and host are all generated at the time of installation, and you can find them at the `.env` file inside of the `laravel` folder.
+
+For example:
+```
+DB_CONNECTION=mysql
+DB_HOST=172.20.0.2
+DB_PORT=3306
+DB_DATABASE=default
+DB_USERNAME=default
+DB_PASSWORD=secret
+```
+
+This means that the host is `172.20.0.2`, the user is `default` with password `secret` and the database is `default`
+
+To interact with the database above, you would run the following command:
+`mysql -u default -h 172.20.0.2 -p`
+Within the MySQL prompt you would use `use default;` to select the correct database.
+
 ## Built With
 
 * [Portainer](https://portainer.io/) - Docker management interface
