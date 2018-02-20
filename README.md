@@ -67,6 +67,18 @@ If you ever find yourself without the server running, just run the `./create_sta
 
 ### Artisan
 
+**UPDATE AS PER v1.1.0**
+
+You can now use the `./artisan.sh` command like you would use the normal `artisan` command without getting ownership issues. Example:
+
+```
+./artisan.sh migrate:fresh
+```
+
+The `own.sh` script will be left in as a easy solution, but will be removed in the next major release
+
+**v1.0.1 way**
+
 If you want to use the artisan command that laravel provides, it will be neccesary to do this from your workspace. You can enter the workspace by executing the following commands from the project root (laravel folder)
 ```
 cd laradock
@@ -82,6 +94,7 @@ When and if you encounter files that cause permission issues with your host syst
 ```
 sudo ./own.sh
 ```
+
 
 ### MySQL
 

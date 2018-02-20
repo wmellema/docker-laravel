@@ -44,7 +44,7 @@ if [ $system = "Darwin" ];
  then
   mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet /{print substr($2,0,length($2)-3)}')
 else
-  mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet addr/{print substr($2,6)}')
+  mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet /{print substr($2,0,length($2)-3)}')
 fi
 wait
 cd "$root/laravel"
@@ -54,9 +54,9 @@ rm -f .envtmp*;
 wait;
 cd "$root/laravel/laradock";
 wait
-docker-compose exec workspace composer install
+docker-compose exec --user=laradock workspace composer install
 wait
 cd "$root/laravel/laradock";
 wait
-docker-compose exec workspace php artisan key:generate
+docker-compose exec --user=laradock workspace php artisan key:generate
 wait
