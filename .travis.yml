@@ -1,0 +1,18 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+      - docker-compose
+
+before_install:
+  - ./create_stack.sh
+
+script:
+  - ./artisan.sh migrate:fresh
