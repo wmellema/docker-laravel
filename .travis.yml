@@ -1,6 +1,6 @@
 sudo: required
 
-language: ruby
+language: bash
 
 services:
   - docker
@@ -9,7 +9,6 @@ addons:
   apt:
     packages:
       - docker-ce
-      - docker-compose
 
 before_install:
   - ./create_stack.sh
