@@ -1,4 +1,5 @@
 # docker-laravel
+[![Build Status](https://travis-ci.org/wmellema/docker-laravel.svg?branch=master)](https://travis-ci.org/wmellema/docker-laravel)
 
 This project is to accomodate the CodeGorilla students with an easy method of installing laravel within docker
 
