@@ -114,12 +114,12 @@ if [ "$_arg_portainer" = on ];
 then
     echo Creating Portainer
     docker volume create portainer_data
-    docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+    docker run --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 elif [ "$_arg_only_portainer" = on ];
 then
   echo Installing only portainer
   docker volume create portainer_data
-  docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+  docker run --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
   exit 0
 else
     echo Not installing Portainer
@@ -160,7 +160,7 @@ rm -f .envtmp*;
 wait;
 cd "$root/laravel/laradock";
 wait
-docker-compose exec workspace composer install
+docker-compose exec --user=laradock workspace composer install
 wait
 cd "$root/laravel/laradock";
 wait
