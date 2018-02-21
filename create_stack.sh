@@ -162,7 +162,7 @@ rm -f .envtmp*;
 wait;
 cd "$root/laravel/laradock";
 wait
-docker-compose exec --user=laradock workspace composer install
+docker-compose exec workspace composer install
 wait
 cd "$root/laravel/laradock";
 wait
