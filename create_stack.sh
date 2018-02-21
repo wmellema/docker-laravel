@@ -140,6 +140,8 @@ git pull;
 wait;
 cd "laradock";
 wait;
+sed -i 's/nginx:alpine/nginx:stable-alpine/g' nginx/Dockerfile
+wait;
 cp env-example .env;
 wait;
 pwd;
