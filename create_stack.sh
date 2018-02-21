@@ -37,6 +37,7 @@ begins_with_short_option()
 _arg_repo="git@github.com:laravel/laravel"
 _arg_portainer=off
 _arg_only_portainer=off
+_arg_custom_repo=off
 
 print_help ()
 {
@@ -56,13 +57,16 @@ parse_commandline ()
 		case "$_key" in
 			-r|--repo)
 				test $# -lt 2 && die "Missing value for the optional argument '$_key'." 1
+				_arg_custom_repo="on"
 				_arg_repo="$2"
 				shift
 				;;
 			--repo=*)
+				_arg_custom_repo="on"
 				_arg_repo="${_key##--repo=}"
 				;;
 			-r*)
+				_arg_custom_repo="on"
 				_arg_repo="${_key##-r}"
 				;;
 			-p|--no-portainer|--portainer)
@@ -167,4 +171,13 @@ wait
 cd "$root/laravel/laradock";
 wait
 docker-compose exec workspace php artisan key:generate
-wait
+wait;
+cd "$root";
+if [ "$_arg_custom_repo" = on ];
+then
+	echo "Migrating..."
+	./artisan.sh migrate:fresh
+else
+	echo "Not migrating..."
+fi
+./laraconf.sh
