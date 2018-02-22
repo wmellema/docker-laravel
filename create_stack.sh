@@ -166,13 +166,16 @@ rm -f .envtmp*;
 wait;
 cd "$root/laravel/laradock";
 wait
-docker-compose exec workspace composer install
+docker-compose exec --user=laradock workspace composer install
 wait
 cd "$root/laravel/laradock";
 wait
 docker-compose exec workspace php artisan key:generate
 wait;
 cd "$root";
+wait;
+./laraconf.sh
+wait;
 sudo ./own.sh
 if [ "$_arg_custom_repo" = on ];
 then
@@ -181,4 +184,3 @@ then
 else
 	echo "Not migrating..."
 fi
-./laraconf.sh
