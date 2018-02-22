@@ -173,6 +173,7 @@ wait
 docker-compose exec workspace php artisan key:generate
 wait;
 cd "$root";
+sudo ./own.sh
 if [ "$_arg_custom_repo" = on ];
 then
 	echo "Migrating..."
