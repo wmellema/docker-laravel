@@ -163,10 +163,12 @@ cd "$root/laravel"
 cat .envtmp2 | sed 's/DB_HOST=127.0.0.1/DB_HOST='$mysql_host'/g' > .env
 wait
 rm -f .envtmp*;
+cd "$root"
+sudo ./own.sh
 wait;
 cd "$root/laravel/laradock";
 wait
-docker-compose exec --user=laradock workspace composer install
+docker-compose exec workspace composer install
 wait
 cd "$root/laravel/laradock";
 wait
