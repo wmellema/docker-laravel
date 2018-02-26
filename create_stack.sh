@@ -163,6 +163,8 @@ cd "$root/laravel"
 cat .envtmp2 | sed 's/DB_HOST=127.0.0.1/DB_HOST='$mysql_host'/g' > .env
 wait
 rm -f .envtmp*;
+cd "$root"
+sudo ./own.sh
 wait;
 cd "$root/laravel/laradock";
 wait
@@ -173,6 +175,9 @@ wait
 docker-compose exec workspace php artisan key:generate
 wait;
 cd "$root";
+wait;
+./laraconf.sh
+wait;
 sudo ./own.sh
 if [ "$_arg_custom_repo" = on ];
 then
@@ -181,4 +186,3 @@ then
 else
 	echo "Not migrating..."
 fi
-./laraconf.sh
