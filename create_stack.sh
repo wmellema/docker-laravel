@@ -114,6 +114,8 @@ parse_commandline "$@"
 root=$(pwd);
 
 system=$(./version.sh)
+echo $system;
+exit 1;
 if [ "$_arg_portainer" = on ];
 then
     echo Creating Portainer
