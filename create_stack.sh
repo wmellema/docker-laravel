@@ -114,6 +114,7 @@ parse_commandline "$@"
 root=$(pwd);
 
 system=$(./version.sh)
+echo $system;
 if [ "$_arg_portainer" = on ];
 then
     echo Creating Portainer
@@ -155,6 +156,9 @@ wait;
 if [ $system = "Darwin" ];
  then
   mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet /{print substr($2,0,length($2)-3)}')
+elif [ $system = "Ubuntu" ];
+then
+	mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql hostname -i)
 else
   mysql_host=$(cd "$root/laravel/laradock"; docker-compose exec mysql ip -4 addr show eth0 | awk '/inet /{print substr($2,0,length($2)-3)}')
 fi
